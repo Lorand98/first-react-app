@@ -1,4 +1,5 @@
 import UserInput from "./UserInput";
+import Button from "../UI/Button";
 import { useState } from "react";
 
 function UserInputForm(props) {
@@ -14,8 +15,21 @@ function UserInputForm(props) {
 
   function addUserHandler(e) {
     e.preventDefault();
+    if (user.name.trim() === "" || user.age.trim() === "") {
+      props.setErrorMessage(
+        "Please enter a valid name and age (non-empty values)."
+      );
+      setUser({ name: "", age: "" });
+      return;
+    }
+
+    if (user.age < 0) {
+      props.setErrorMessage("Please enter a valid age (>0).");
+      setUser({ name: "", age: "" });
+      return;
+    }
+
     props.onAddUser({ ...user, id: Math.random() });
-    setUser({ name: "", age: "" });
   }
 
   return (
@@ -36,7 +50,7 @@ function UserInputForm(props) {
       >
         {user.age}
       </UserInput>
-      <button type="submit">Add User</button>
+      <Button isSubmit={true}>Add User</Button>
     </form>
   );
 }

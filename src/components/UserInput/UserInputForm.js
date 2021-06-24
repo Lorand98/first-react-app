@@ -1,11 +1,41 @@
-import "./UserInputForm.module.css";
 import UserInput from "./UserInput";
+import { useState } from "react";
 
-function UserInputForm() {
+function UserInputForm(props) {
+  const [user, setUser] = useState({
+    name: "",
+    age: "",
+  });
+
+  function setUserHandler(e) {
+    const { name, value } = e.target;
+    setUser((prevState) => ({ ...prevState, [name]: value }));
+  }
+
+  function addUserHandler(e) {
+    e.preventDefault();
+    props.onAddUser({ ...user, id: Math.random() });
+    setUser({ name: "", age: "" });
+  }
+
   return (
-    <form>
-      <UserInput type="text">Username</UserInput>
-      <UserInput type="number">Age (Years)</UserInput>
+    <form onSubmit={addUserHandler}>
+      <UserInput
+        type="text"
+        label="Username"
+        name="name"
+        onChangeInput={setUserHandler}
+      >
+        {user.name}
+      </UserInput>
+      <UserInput
+        type="number"
+        label="Age (Years)"
+        name="age"
+        onChangeInput={setUserHandler}
+      >
+        {user.age}
+      </UserInput>
       <button type="submit">Add User</button>
     </form>
   );

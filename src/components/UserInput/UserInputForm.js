@@ -28,7 +28,7 @@ function UserInputForm(props) {
       setUser({ name: "", age: "" });
       return;
     }
-
+    setUser({ name: "", age: "" });
     props.onAddUser({ ...user, id: Math.random() });
   }
 

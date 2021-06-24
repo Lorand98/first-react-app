@@ -1,0 +1,19 @@
+.input_container {
+  margin: 1rem 1rem 1rem 0rem;
+}
+
+input {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+label {
+  font-weight: bold;
+}
+
+button {
+  color: #fff;
+  background-color: #702081;
+  padding: 0.3rem 1rem;
+  border: none;
+}

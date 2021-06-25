@@ -25,17 +25,14 @@ function App() {
 
   return (
     <div>
-      <div className={showModal ? styles["modal-enabled"] : ""}>
-        <Card>
-          <UserInputForm
-            onAddUser={addUser}
-            setErrorMessage={setErrorMessage}
-          />
-        </Card>
-        <Card>
-          <UserList users={users} />
-        </Card>
-      </div>
+      <div className={showModal ? styles.backdrop : ""} />
+      <Card>
+        <UserInputForm onAddUser={addUser} setErrorMessage={setErrorMessage} />
+      </Card>
+      <Card>
+        <UserList users={users} />
+      </Card>
+
       {showModal && <Modal onClose={closeModal}>{modalText}</Modal>}
     </div>
   );

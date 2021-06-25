@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div>
-      <div className={showModal ? styles.backdrop : ""} />
+      <div className={showModal ? styles.backdrop : ""} onClick={closeModal} />
       <Card>
         <UserInputForm onAddUser={addUser} setErrorMessage={setErrorMessage} />
       </Card>
@@ -33,7 +33,7 @@ function App() {
         <UserList users={users} />
       </Card>
 
-      {showModal && <Modal onClose={closeModal}>{modalText}</Modal>}
+      {showModal && <Modal onClick={closeModal}>{modalText}</Modal>}
     </div>
   );
 }
